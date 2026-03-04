@@ -242,6 +242,30 @@
       color: var(--muted);
       font-size: .95em;
     }
+    .font-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.font-buttons button {
+  padding: 6px 12px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(17,24,39,.6);
+  color: var(--text);
+  cursor: pointer;
+  transition: background .2s ease, transform .1s ease;
+}
+
+.font-buttons button:hover {
+  background: rgba(34,197,94,.8);
+  transform: scale(1.05);
+}
+
+.font-buttons button:active {
+  transform: scale(0.95);
+}
   </style>
 </head>
 
@@ -269,6 +293,10 @@
 
         <div class="tools">
           <div class="search" id="search">
+            <div class="font-buttons">
+              <button id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
+              <button id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+            </div>
             <div class="search-icon"></div>
             <div class="search-input">Buscar no portal… (falso input)</div>
           </div>
@@ -449,7 +477,28 @@
   </div>
 
   <script>
- 
+ // Seleciona root para alterar font-size
+const root = document.documentElement;
+const minFont = 12; // tamanho mínimo em px
+const maxFont = 29; // tamanho máximo em px
+const step = 2;     // incremento/decremento em px
+
+// Botões
+const btnIncrease = document.getElementById('font-increase');
+const btnDecrease = document.getElementById('font-decrease');
+
+// Funções
+btnIncrease.addEventListener('click', () => {
+  let current = parseFloat(getComputedStyle(root).getPropertyValue('--base-font'));
+  let next = Math.min(current + step, maxFont);
+  root.style.setProperty('--base-font', next + 'px');
+});
+
+btnDecrease.addEventListener('click', () => {
+  let current = parseFloat(getComputedStyle(root).getPropertyValue('--base-font'));
+  let next = Math.max(current - step, minFont);
+  root.style.setProperty('--base-font', next + 'px');
+});
 
   </script>
 </body>
