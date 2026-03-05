@@ -266,6 +266,20 @@
 .font-buttons button:active {
   transform: scale(0.95);
 }
+:root {
+  /* cores normais já existentes... */
+}
+
+html[data-contrast="high"] {
+  --bg: #000000;
+  --surface: #000000;
+  --surface2: #111111;
+  --text: #ffffff;
+  --muted: #49d25d;
+  --brand: #00ffff;
+  --border: #ffffff;
+  --shadow: 0 10px 25px rgba(255,255,255,.5);
+}
   </style>
 </head>
 
@@ -296,6 +310,7 @@
             <div class="font-buttons">
               <button id="font-decrease" aria-label="Diminuir tamanho da fonte">A-</button>
               <button id="font-increase" aria-label="Aumentar tamanho da fonte">A+</button>
+              <button id="toggle-contrast" aria-label="Alternar contraste">🌙</button>
             </div>
             <div class="search-icon"></div>
             <div class="search-input">Buscar no portal… (falso input)</div>
@@ -499,7 +514,16 @@ btnDecrease.addEventListener('click', () => {
   let next = Math.max(current - step, minFont);
   root.style.setProperty('--base-font', next + 'px');
 });
+const btnContrast = document.getElementById('toggle-contrast');
 
+btnContrast.addEventListener('click', () => {
+  const html = document.documentElement;
+  if (html.getAttribute('data-contrast') === 'high') {
+    html.removeAttribute('data-contrast'); // volta ao normal
+  } else {
+    html.setAttribute('data-contrast', 'high'); // ativa contraste alto
+  }
+});
   </script>
 </body>
 </html>
