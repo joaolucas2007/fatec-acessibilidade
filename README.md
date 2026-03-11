@@ -1,5 +1,5 @@
 # Projeto base para aula de Acessibilidade
-#ATIVIDADE 1 ALGORITMO:
+#ATIVIDADE 1 BOTÃO DIMINUIR E AUMENTAR FONTE:
 
 #1-Criar dois botões que interagem diretamente no tamanho da fonte,diminuido e aumentando o font-size de acordo com a necessidade do usuário.
 
